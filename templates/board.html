@@ -6,26 +6,20 @@
     <meta charset="utf-8"/>
     <title>White board</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.min.css' %}" rel="stylesheet">
 </head>
 <body>
 
-<div class="container">
-    <div class="row">
-        <canvas class="whiteboard" width="1000" height="600"></canvas>
-        <div class="colors">
-            <div class="color black"></div>
-            <div class="color red"></div>
-            <div class="color green"></div>
-            <div class="color blue"></div>
-            <div class="color yellow"></div>
-            <div>
-                <button class="btn btn-primary" id="erase">Erase</button>
-            </div>
-        </div>
-    </div>
-</div>
+<canvas></canvas>
+<main>
+    <section class="colors" id="colors">
+        <input type="color" class="color-picker" value="#171717"/>
+    </section>
+    <section class="thickness">
+        <input type="number" class="stroke-weight" value="3"/>
+    </section>
+    <button class="clear">X</button>
+</main>
 
 <script src="{% static 'js/reconnecting-websocket.min.js' %}"></script>
 <script>
@@ -57,16 +51,10 @@
     };
 
     ws.onclose = function (e) {
-        console.error('Websocket closed unexpectedly');
+        console.error('Websocket closed unexpectedly', e);
     };
-
-    {% comment %}setTimeout(() => {
-        ws.send(JSON.stringify({
-            'text': "Hello world"
-        }));
-    }, 1000);{% endcomment %}
 </script>
-<script src="{% static 'js/draw.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
 </body>
 </html>

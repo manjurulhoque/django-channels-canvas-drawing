@@ -159,8 +159,9 @@ document.getElementById("erase").addEventListener("click", (e) => {
     }));
 })
 
-const onDrawingEvent = (data) => {
+const onDrawingEvents = (data) => {
     const w = canvas.width;
     const h = canvas.height;
+    drawing = true;
     drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color);
 }
